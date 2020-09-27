@@ -15,12 +15,17 @@ export default function Home({ blogs }) {
       <Row className="mb-5">
         {blogs.map((blog) => (
           <Col key="blog.slug" md="4">
-            <CardItem 
-            author={blog.author}
-            title={blog.title} 
-            subtitle={blog.subtitle}
-            date={blog.date}
-            image={blog.coverImage} />
+            <CardItem
+              author={blog.author}
+              title={blog.title}
+              subtitle={blog.subtitle}
+              date={blog.date}
+              image={blog.coverImage}
+              link={{
+                href: "/blogs/[slug]",
+                as: `/blogs/${blog.slug}`,
+              }}
+            />
           </Col>
         ))}
       </Row>

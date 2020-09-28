@@ -10,7 +10,7 @@ import { getAllBlogs } from "lib/api";
 
 export default function Home({ blogs }) {
   const [filter, setFilter] = useState({
-    view: { list: 1 },
+    view: { list: 0 },
   });
 
   return (
@@ -27,7 +27,16 @@ export default function Home({ blogs }) {
         {blogs.map((blog) =>
           !filter.view.list ? (
             <Col key={`${blog.slug}-list`} md="9">
-              <CardListItem />
+              <CardListItem
+                author={blog.author}
+                title={blog.title}
+                subtitle={blog.subtitle}
+                date={blog.date}
+                link={{
+                  href: "/blogs/[slug]",
+                  as: `/blogs/${blog.slug}`,
+                }}
+              />
             </Col>
           ) : (
             <Col key="blog.slug" md="4">

@@ -10,6 +10,7 @@
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.150.7",
+    "@sanity/image-url": "^0.140.19",
     "bootstrap": "^4.5.0",
     "highlight.js": "^10.2.0",
     "next": "9.5.3",

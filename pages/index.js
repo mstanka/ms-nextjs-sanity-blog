@@ -7,11 +7,14 @@ import CardListItem from "components/CardListItem";
 import FilteringMenu from "components/FilteringMenu";
 
 import { getAllBlogs } from "lib/api";
+import { useGetBlogs} from "actions";
 
-export default function Home({ blogs }) {
+export default function Home({ blogs: initialData }) {
   const [filter, setFilter] = useState({
     view: { list: 0 },
   });
+
+  const { data: blogs, error } = useGetBlogs(initialData);
 
   return (
     <PageLayout>
@@ -63,7 +66,7 @@ export default function Home({ blogs }) {
 // provides props to your page
 // creates static page
 export async function getStaticProps() {
-  const blogs = await getAllBlogs();
+  const blogs = await getAllBlogs({offset: 1});
   return {
     props: {
       blogs,

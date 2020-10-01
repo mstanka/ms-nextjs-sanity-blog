@@ -4,7 +4,9 @@ import useSWRPages from "swr";
 import { useGetBlogs } from "actions";
 import { Col } from "react-bootstrap";
 import CardItem from "components/CardItem";
+import CardItemBlank from "components/CardItemBlank";
 import CardListItem from "components/CardListItem";
+import CardListItemBlank from "components/CardListItemBlank";
 
 export const useGetBlogsPages = ({ blogs, filter }) => {
   useEffect(() => {
@@ -24,7 +26,19 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
       );
 
       if (!paginatedBlogs) {
-        return "Loading...";
+        return Array(3)
+          .fill(0)
+          .map((_, i) =>
+            filter.view.list ? (
+              <Col key={i} md="9">
+                <CardListItemBlank />;
+              </Col>
+            ) : (
+              <Col key={`${i}-item`} md="4">
+                <CardItemBlank />;
+              </Col>
+            )
+          );
       }
 
       return paginatedBlogs.map((blog) =>
@@ -65,7 +79,7 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
       if (SWR.data && SWR.data.length === 0) {
         return null;
       }
-      return (index + 1) * 3;
+      return (index + 1) * 6;
     },
     [filter]
   );

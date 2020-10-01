@@ -55,7 +55,7 @@ export default function Home({ blogs }) {
 // provides props to your page
 // creates static page
 export async function getStaticProps() {
-  const blogs = await getAllBlogs({ offset: 1 });
+  const blogs = await getAllBlogs({ offset: 0, date: 'desc' });
   return {
     props: {
       blogs,

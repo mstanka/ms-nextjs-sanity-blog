@@ -13,7 +13,7 @@ const CardItem = ({
 }) => {
   return (
     <Card className={`fj-card ${mode}`}>
-      <div className="card-body-wrapper">
+      <div className={`card-body-wrapper ${!image ? 'no-image' : ''}`}>
         <Card.Header className="d-flex flex-row">
           <img
             src={author?.avatar || "https://via.placeholder.com/150"}
@@ -43,11 +43,13 @@ const CardItem = ({
         <div className="view overlay">
           {mode === "placeholder" ? (
             <div className="image-placeholder" />
-          ) : (
+          ) : image ? (
             <Card.Img
               src={urlFor(image).height(300).crop("center").fit("clip").url()}
               alt="Card image cap"
             />
+          ) : (
+            <div></div>
           )}
         </div>
         <Card.Body>

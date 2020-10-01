@@ -7,6 +7,7 @@ import CardItem from "components/CardItem";
 import CardItemBlank from "components/CardItemBlank";
 import CardListItem from "components/CardListItem";
 import CardListItemBlank from "components/CardListItemBlank";
+import moment from 'moment'
 
 export const useGetBlogsPages = ({ blogs, filter }) => {
   useEffect(() => {
@@ -48,7 +49,7 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
               author={blog.author}
               title={blog.title}
               subtitle={blog.subtitle}
-              date={blog.date}
+              date={moment(blog.date).format("LL")}
               link={{
                 href: "/blogs/[slug]",
                 as: `/blogs/${blog.slug}`,
@@ -61,7 +62,7 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
               author={blog.author}
               title={blog.title}
               subtitle={blog.subtitle}
-              date={blog.date}
+              date={moment(blog.date).format("LL")}
               image={blog.coverImage}
               link={{
                 href: "/blogs/[slug]",
